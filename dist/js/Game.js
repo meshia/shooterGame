@@ -34,9 +34,10 @@ export default class Game {
     }
 
     getEnemies = (enemyNumber) => {
-        for (let i=0 ; i<=enemyNumber ; i++) {
+        for (let i=1 ; i<=enemyNumber ; i++) {
             let george = new George;
             george.initGeorge(this);
+            console.log('enemyNumber', i);
         }
     };
 

@@ -54,6 +54,7 @@ export default class George {
               }, 1000, function(){
                   if($(this) && $(this) != 'undefined' && currentParent.gameFinished == false) {
                     $(this).stop().remove(); // kill george element in dom
+                    console.log('in click event');
                     currentParent.getEnemies(1); // create another element
                   }
               });  
