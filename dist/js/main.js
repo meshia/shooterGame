@@ -4,8 +4,6 @@ import Game from './Game.js';
 const $ = window.$;
 
 $(function() {
-    console.log( "ready!" );
     let newGame = new Game;
-    console.log( "newGame",newGame );
-    newGame.initGame(60, 6, $('#game'));
+    newGame.initGame(10, 6, $('#game'));
 });
