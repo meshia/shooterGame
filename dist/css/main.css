@@ -2351,6 +2351,9 @@ body #game {
   height: 400px;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 body #game .game-background {
   position: relative;
@@ -2361,9 +2364,21 @@ body #game .game-background {
   background-position: bottom center;
   background-color: #97B8C4;
   cursor: url('../images/target.png'), auto;
+  flex: 0 0 auto;
+}
+body #game .game-timer {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  font-size: 50px;
+  font-weight: 800;
+  pointer-events: none;
 }
 @media (min-width: 1024px) {
   body #game {
     height: 800px;
+  }
+  body #game .game-timer {
+    font-size: 30px;
   }
 }
