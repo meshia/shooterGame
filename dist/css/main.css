@@ -2377,11 +2377,11 @@ body #game .game-george {
   z-index: 10;
   right: -15%;
 }
-body #game .game-timer {
+body #game .game-ui {
   position: absolute;
   top: 10px;
-  left: 50%;
-  font-size: 50px;
+  left: 45%;
+  z-index: 100;
   font-weight: 800;
   padding: 5px 10px;
   border: solid 4px #000;
@@ -2389,6 +2389,14 @@ body #game .game-timer {
   color: #000;
   border-radius: 50px;
   pointer-events: none;
+}
+body #game .game-ui .game-timer-title,
+body #game .game-ui .game-score-title,
+body #game .game-ui .game-timer,
+body #game .game-ui .game-score {
+  font-size: 30px;
+  position: relative;
+  padding: 3px;
 }
 @media (min-width: 1024px) {
   body #game {

@@ -5,5 +5,5 @@ const $ = window.$;
 
 $(function() {
     let newGame = new Game;
-    newGame.initGame(10, 6, $('#game'));
+    newGame.initGame(60, 6, $('#game'));
 });

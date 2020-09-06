@@ -1,18 +1,17 @@
 export default class George {
     constructor(){
-        this.startXPosition = '-15%';
+        this.startXPosition = '-20%';
         this.startYPosition;
-        this.endXPosition = '115%';
+        this.endXPosition = '120%';
         this.endYPosition;
         this.killedYPosition;
-        this.lives;
-        this.isDead;
         this.delayToSpawn;
         this.currentGeorge;
+        this.points = 10;
         this.parent;
     }
 
-    initGeorge = function(parent) {
+    initGeorge = (parent) => {
         this.parent = parent;
         this.startYPosition = Math.floor(Math.random() * (this.parent.gameElement.innerHeight()-50));// -50 is the height of the timer
         this.endYPosition = Math.floor(Math.random() * (this.parent.gameElement.innerHeight()-50));// -50 is the height of the timer
@@ -27,7 +26,7 @@ export default class George {
         this.initClickEvent();
     }
 
-    initAnimation = function() {
+    initAnimation = () => {
         let currentParent = this.parent;
         let currentThis = this;
         this.currentGeorge.delay(this.delayToSpawn).animate({
@@ -41,10 +40,12 @@ export default class George {
           });      
     }
 
-    initClickEvent = function() {
+    initClickEvent = () => {
         let currentParent = this.parent;
         let currentThis = this;
         this.currentGeorge.on("click", function(e) {
+            currentParent.score += currentThis.points;
+            $('#game-score').text(currentParent.score);
             $(this).stop();
             $(this).animate({
                 top: currentThis.killedYPosition,

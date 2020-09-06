@@ -44,11 +44,11 @@ body {
       right:-15%;
     }
 
-    .game-timer{
+    .game-ui {
       position: absolute;
       top:10px;
-      left: 50%;
-      font-size: 50px;
+      left: 45%;
+      z-index: 100;
       font-weight: 800;
       padding:5px 10px;
       border: solid 4px #000;
@@ -56,7 +56,16 @@ body {
       color: #000;
       border-radius: 50px;
       pointer-events: none;
+      .game-timer-title,
+      .game-score-title,
+      .game-timer,
+      .game-score {
+        font-size: 30px;
+        position: relative;
+        padding:3px;
+      }
     }
+    
 
   // Desktop
   @media (min-width: @tablet) {
