@@ -43,6 +43,35 @@ body #game .game-background {
   cursor: url('../images/target.png'), auto;
   flex: 0 0 auto;
 }
+body #game .game-ui {
+  position: absolute;
+  font-weight: 800;
+  padding: 5px 10px;
+  border: solid 4px #2e2e2e;
+  background-color: #FFFFFF;
+  color: #2e2e2e;
+  border-radius: 50px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  top: 10px;
+  width: 90vw;
+  pointer-events: none;
+}
+body #game .game-ui .game-timer-title,
+body #game .game-ui .game-score-title,
+body #game .game-ui .game-timer,
+body #game .game-ui .game-player,
+body #game .game-ui .game-score {
+  font-size: 20px;
+  position: relative;
+  padding: 3px;
+}
 body #game .game-login {
   position: absolute;
   font-weight: 800;
@@ -60,7 +89,7 @@ body #game .game-login {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 90vw;
   top: 50px;
   font-size: 20px;
   margin-top: 20px;
@@ -71,6 +100,28 @@ body #game .game-login input {
   font-weight: 800;
   padding: 10px;
   border-radius: 50px;
+}
+body #game .game-restart {
+  position: absolute;
+  font-weight: 800;
+  padding: 5px 10px;
+  border: solid 4px #2e2e2e;
+  background-color: #FFFFFF;
+  color: #2e2e2e;
+  border-radius: 50px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 10vw;
+  top: 35%;
+  width: 15vw;
+  font-size: 20px;
+  cursor: pointer;
 }
 body #game .game-george {
   position: absolute;
@@ -86,49 +137,6 @@ body #game .game-george {
 }
 body #game .game-george.rotate {
   transform: rotate(-400deg);
-}
-body #game .game-ui {
-  position: absolute;
-  font-weight: 800;
-  padding: 5px 10px;
-  border: solid 4px #2e2e2e;
-  background-color: #FFFFFF;
-  color: #2e2e2e;
-  border-radius: 50px;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 100;
-  top: 10px;
-  width: 100%;
-  pointer-events: none;
-}
-body #game .game-ui .game-timer-title,
-body #game .game-ui .game-score-title,
-body #game .game-ui .game-timer,
-body #game .game-ui .game-player,
-body #game .game-ui .game-score {
-  font-size: 20px;
-  position: relative;
-  padding: 3px;
-}
-body #game .game-restart {
-  position: absolute;
-  font-weight: 800;
-  padding: 5px 10px;
-  border: solid 4px #2e2e2e;
-  background-color: #FFFFFF;
-  color: #2e2e2e;
-  border-radius: 50px;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 100;
-  width: 15vw;
-  font-size: 20px;
-  cursor: pointer;
 }
 @media (min-width: 1024px) {
   body #game {

@@ -31,13 +31,32 @@ body {
       flex: 0 0 auto;
     }
 
+    .game-ui {
+      .ui-bubble();
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      top:10px;
+      width: 90vw;
+      pointer-events: none;
+      .game-timer-title,
+      .game-score-title,
+      .game-timer,
+      .game-player,
+      .game-score {
+        font-size: 20px;
+        position: relative;
+        padding:3px;
+      }
+    }
+
     .game-login {
       .ui-bubble();
       display:flex;
       flex-direction:column;
       align-items: center;
       justify-content: center;
-      width: 100%;
+      width: 90vw;
       top:50px;
       font-size:20px;
       margin-top:20px;
@@ -48,6 +67,18 @@ body {
         padding: 10px;
         border-radius: 50px;
       }
+    }
+
+    .game-restart {
+      .ui-bubble();
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 10vw;
+      top: 35%;
+      width:15vw;
+      font-size: 20px;
+      cursor: pointer;
     }
 
     .game-george {
@@ -64,29 +95,6 @@ body {
       &.rotate {
         transform: rotate(-400deg);
       }
-    }
-
-    .game-ui {
-      .ui-bubble();
-      top:10px;
-      width: 100%;
-      pointer-events: none;
-      .game-timer-title,
-      .game-score-title,
-      .game-timer,
-      .game-player,
-      .game-score {
-        font-size: 20px;
-        position: relative;
-        padding:3px;
-      }
-    }
-
-    .game-restart {
-      .ui-bubble();
-      width:15vw;
-      font-size: 20px;
-      cursor: pointer;
     }
 
   // Desktop
