@@ -81,11 +81,22 @@ export default class Game {
     }
 
     initWinnersTable = () => {
+        $('<ul/>', {
+            "id": 'game-winners',
+            "class": 'game-winners'
+        }).appendTo(this.gameElement); // add winners table
+
         $.ajax({
             url: this.phpUrl + "getWinners.php",
             type: "GET",
             success: function(data) {
-                console.log(data);
+                let currentData = JSON.parse(data);
+                $.each(currentData, function(key,value) {
+                    $('<li/>', {
+                        "class": 'game-winner',
+                        "text" : value.Name + " | " + value.Score
+                    }).appendTo('#game-winners'); // add winners table
+                  });
             },
             error: function(e) {
                 console.error(e);
@@ -99,7 +110,9 @@ export default class Game {
             if($("#game-login-input").val().length > 0) {
                 currentThis.player.name = $("#game-login-input").val();
                 $('#game-player').text($("#game-login-input").val());
+                $('#game-login-button').off();
                 $('#game-login').remove();
+                $('#game-winners').remove();
                 currentThis.initTimer();
                 currentThis.getEnemies(currentThis.emenyNumer);
             }
@@ -145,6 +158,7 @@ export default class Game {
                 intervalthis.killAllEnemies();
                 intervalthis.initRestartButton();
                 intervalthis.sendPlayerScore();
+                intervalthis.initWinnersTable();
                 clearInterval(timer);
             }
         }, 1000);
@@ -184,6 +198,7 @@ export default class Game {
             currentThis.gameFinished = false;
             currentThis.initTimer();
             currentThis.getEnemies(currentThis.emenyNumer);
+            $('#game-winners').remove();
             $("#game-restart").off();
             $("#game-restart").remove();
         });
