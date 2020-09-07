@@ -2376,6 +2376,10 @@ body #game .game-george {
   flex: 0 0 auto;
   z-index: 10;
   right: -15%;
+  transition: transform ease-out 1s;
+}
+body #game .game-george.rotate {
+  transform: rotate(-400deg);
 }
 body #game .game-ui {
   position: absolute;
@@ -2394,15 +2398,33 @@ body #game .game-ui .game-timer-title,
 body #game .game-ui .game-score-title,
 body #game .game-ui .game-timer,
 body #game .game-ui .game-score {
-  font-size: 30px;
+  font-size: 20px;
   position: relative;
   padding: 3px;
+}
+body #game .game-restart {
+  position: absolute;
+  top: 45%;
+  left: 48%;
+  z-index: 100;
+  font-weight: 800;
+  padding: 5px 10px;
+  border: solid 4px #000;
+  background-color: #fff;
+  color: #000;
+  border-radius: 50px;
+  font-size: 20px;
+  cursor: pointer;
 }
 @media (min-width: 1024px) {
   body #game {
     height: 800px;
   }
-  body #game .game-timer {
+  body #game .game-timer-title,
+  body #game .game-score-title,
+  body #game .game-timer,
+  body #game .game-score,
+  body #game .game-restart {
     font-size: 30px;
   }
   body #game .game-george {

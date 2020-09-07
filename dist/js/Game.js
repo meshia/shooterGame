@@ -7,6 +7,7 @@ export default class Game {
     constructor(){
         this.player = new Player;
         this.time = 30;
+        this.duration = this.time;
         this.emenyNumer = 3;
         this.gameElement;
         this.gameStarted = false;
@@ -18,9 +19,10 @@ export default class Game {
     initGame = (time, enemyNumber, gameElement,numberOfPlayers) => {
         if(gameElement && gameElement.length != 0) {
             this.time = (time ? time : this.time);
+            this.duration = this.time;
             this.emenyNumer = (enemyNumber ? enemyNumber : this.enemyNumber);
             this.gameElement = gameElement;
-            this.enemies = this.getEnemies(this.emenyNumer);
+            this.getEnemies(this.emenyNumer);
 
             $('<div/>', {
                 "id": 'game-ui',
@@ -37,7 +39,6 @@ export default class Game {
         for (let i=1 ; i<=enemyNumber ; i++) {
             let george = new George;
             george.initGeorge(this);
-            console.log('enemyNumber', i);
         }
     };
 
@@ -63,27 +64,51 @@ export default class Game {
 
     initTimer = () => {
         this.gameStarted = true;
-        $('<span/>', {
-            "id": 'game-timer-title',
-            "class": 'game-timer-title',
-            "text": 'Time:'
-        }).appendTo('#game-ui'); // add timer span
-        $('<span/>', {
-            "id": 'game-timer',
-            "class": 'game-timer',
-            "text": this.time
-        }).appendTo('#game-ui'); // add timer span
+        if($('#game-timer').length === 0) {
+            $('<span/>', {
+                "id": 'game-timer-title',
+                "class": 'game-timer-title',
+                "text": 'Time:'
+            }).appendTo('#game-ui'); // add timer span
+            $('<span/>', {
+                "id": 'game-timer',
+                "class": 'game-timer',
+                "text": this.time
+            }).appendTo('#game-ui'); // add timer span
+        }
         let intervalthis = this;
         timer = setInterval(function() {
             intervalthis.time = --intervalthis.time;
             $("#game-timer").text(intervalthis.time);
-            if(intervalthis.time == 0) {
+            if(intervalthis.time == 0) { // Game Over
                 intervalthis.gameStarted = false;
                 intervalthis.gameFinished = true;
                 intervalthis.killAllEnemies();
+                intervalthis.initRestartButton();
                 clearInterval(timer);
             }
         }, 1000);
+    }
+
+    initRestartButton = () => {
+        let currentThis = this;
+        $('<span/>', {
+            "id": 'game-restart',
+            "class": 'game-restart',
+            "text": "Restart?"
+        }).appendTo(this.gameElement); // add background div
+        $("#game-restart").on("click", function(){
+            currentThis.time = currentThis.duration; // reset time
+            currentThis.score = 0; //reset score
+            $('.game-score').text(currentThis.score); //reset score
+            $('.game-george').remove(); //remove all enemies
+            currentThis.gameStarted = true;
+            currentThis.gameFinished = false;
+            currentThis.initTimer();
+            currentThis.getEnemies(currentThis.emenyNumer);
+            $("#game-restart").off();
+            $("#game-restart").remove();
+        });
     }
 
     initScore = () => {
