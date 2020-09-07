@@ -1,11 +1,17 @@
 @import url("http://fonts.googleapis.com/css?family=Open+Sans&.css");
 .ui-bubble {
+  position: absolute;
   font-weight: 800;
   padding: 5px 10px;
   border: solid 4px #2e2e2e;
   background-color: #FFFFFF;
   color: #2e2e2e;
   border-radius: 50px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 100;
 }
 body {
   font-family: 'Open Sans', sans-serif;
@@ -38,21 +44,25 @@ body #game .game-background {
   flex: 0 0 auto;
 }
 body #game .game-login {
+  position: absolute;
   font-weight: 800;
   padding: 5px 10px;
   border: solid 4px #2e2e2e;
   background-color: #FFFFFF;
   color: #2e2e2e;
   border-radius: 50px;
-  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
   top: 50px;
-  left: 41%;
   font-size: 20px;
-  z-index: 100;
   margin-top: 20px;
 }
 body #game .game-login button,
@@ -78,16 +88,20 @@ body #game .game-george.rotate {
   transform: rotate(-400deg);
 }
 body #game .game-ui {
+  position: absolute;
   font-weight: 800;
   padding: 5px 10px;
   border: solid 4px #2e2e2e;
   background-color: #FFFFFF;
   color: #2e2e2e;
   border-radius: 50px;
-  position: absolute;
-  top: 10px;
-  left: 45%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   z-index: 100;
+  top: 10px;
+  width: 100%;
   pointer-events: none;
 }
 body #game .game-ui .game-timer-title,
@@ -100,16 +114,19 @@ body #game .game-ui .game-score {
   padding: 3px;
 }
 body #game .game-restart {
+  position: absolute;
   font-weight: 800;
   padding: 5px 10px;
   border: solid 4px #2e2e2e;
   background-color: #FFFFFF;
   color: #2e2e2e;
   border-radius: 50px;
-  position: absolute;
-  top: 45%;
-  left: 48%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   z-index: 100;
+  width: 15vw;
   font-size: 20px;
   cursor: pointer;
 }
@@ -127,5 +144,9 @@ body #game .game-restart {
   body #game .game-george {
     width: 240px;
     height: 290px;
+  }
+  body #game .game-login,
+  body #game .game-ui {
+    width: 25vw;
   }
 }

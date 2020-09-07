@@ -13,6 +13,7 @@ export default class Game {
         this.gameStarted = false;
         this.gameFinished = false;
         this.score = 0;
+        this.phpUrl = "./api/";
         //this.numberOfPlayers // TODO: multiplayer
     }
 
@@ -75,8 +76,21 @@ export default class Game {
             "class": 'game-login-button',
             "text": "START!"
         }).appendTo('#game-login'); // add login button span
-
+        this.initWinnersTable();
         this.initPlayer();
+    }
+
+    initWinnersTable = () => {
+        $.ajax({
+            url: this.phpUrl + "getWinners.php",
+            type: "GET",
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(e) {
+                console.error(e);
+            }
+        });
     }
 
     initPlayer = () => {
@@ -102,7 +116,6 @@ export default class Game {
     killAllEnemies = () => {
         $('.game-george').stop();
         $('.game-george').off();
-        
     };
 
     initBackground = (gameElement) => {
@@ -131,9 +144,27 @@ export default class Game {
                 intervalthis.player.score = intervalthis.score;
                 intervalthis.killAllEnemies();
                 intervalthis.initRestartButton();
+                intervalthis.sendPlayerScore();
                 clearInterval(timer);
             }
         }, 1000);
+    }
+
+    sendPlayerScore = () => {
+        $.ajax({
+            url: this.phpUrl + "sendUserScore.php",
+            type:"POST",
+            data: {
+                "name": this.player.name,
+                "score": this.player.score
+            },
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(e) {
+                console.error(e);
+            }
+        });
     }
 
     initRestartButton = () => {

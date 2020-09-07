@@ -33,15 +33,13 @@ body {
 
     .game-login {
       .ui-bubble();
-      position: absolute;
       display:flex;
       flex-direction:column;
       align-items: center;
       justify-content: center;
+      width: 100%;
       top:50px;
-      left: 41%;
       font-size:20px;
-      z-index: 100;
       margin-top:20px;
       button,
       input{
@@ -70,10 +68,8 @@ body {
 
     .game-ui {
       .ui-bubble();
-      position: absolute;
       top:10px;
-      left: 45%;
-      z-index: 100;
+      width: 100%;
       pointer-events: none;
       .game-timer-title,
       .game-score-title,
@@ -88,10 +84,7 @@ body {
 
     .game-restart {
       .ui-bubble();
-      position: absolute;
-      top:45%;
-      left: 48%;
-      z-index: 100;
+      width:15vw;
       font-size: 20px;
       cursor: pointer;
     }
@@ -111,6 +104,10 @@ body {
       width:240px;
       height:290px;
      
+    }
+    .game-login,
+    .game-ui {
+      width: 25vw;
     }
   }
   }

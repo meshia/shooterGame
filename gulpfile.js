@@ -39,6 +39,11 @@ gulp.task('copyJs', function() {
     .pipe(gulp.dest('dist/js'));
 });
 
+gulp.task('copyPhp', function() {
+    return gulp.src('src/api/*.php')
+    .pipe(gulp.dest('dist/api'));
+});
+
 gulp.task('minCss', function () {
     return gulp.src('css/main.css')
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
@@ -59,6 +64,7 @@ gulp.task('watch', function() {
     gulp.watch('src/index.html', ['copyIndex']);
     gulp.watch('src/less/*', ['styles']);
     gulp.watch('src/js/*.js', ['copyJs']);
+    gulp.watch('src/api/*.php', ['copyPhp']);
     gulp.watch('src/images/*', ['copyImages']);
     gulp.watch('src/sounds/*', ['copySounds']);
 });
@@ -74,6 +80,7 @@ gulp.task('server', function() {
 gulp.task('dev', function () {
   runSequence('build-clean',
               'copyJs',
+              'copyPhp',
               'devJs',
               'copyIndex',
               'copyImages',
@@ -93,6 +100,7 @@ gulp.task('production', function (callback) {
               'copySounds',
               'styles',
               'copyJs',
+              'copyPhp',
               'minCss',
               callback);
   }
