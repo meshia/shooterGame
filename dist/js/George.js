@@ -9,7 +9,7 @@ export default class George {
         this.currentGeorge;
         this.points = 10;
         this.hitSound;
-        this.soundSrc = '../sounds/sound_0' + (Math.floor(Math.random() * 3) + 1) +'.wav'; //random sound out of 4
+        this.soundSrc = '../sounds/sound_0' + (Math.floor(Math.random() * 3) + 1) +'.wav'; //random sound out of 3
         this.parent;
     }
 

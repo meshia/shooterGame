@@ -57,7 +57,7 @@ export default class Game {
         const el = document.querySelector("#game-background");
         el.addEventListener("mousemove", (e) => {
             if(currentThis.gameFinished === false) {
-                el.style.backgroundPositionX = -e.offsetX + "px";
+                el.style.backgroundPositionX = (e.offsetX + 600) + "px";
             }
         });
     };

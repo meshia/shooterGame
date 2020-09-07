@@ -5,18 +5,27 @@
 // COLORS
 @base-white: #FFFFFF;
 @base-black: #2e2e2e;
-@base-grey: #676a6c;
-@base-light-grey: #f3f3f4;
-@base-green: #139998;
-@base-light-blue: #e7eaec;
+@base-light-blue: #97B8C4;
 
-@base-background: @base-light-grey;
-@base-text: @base-grey;
+@base-background: @base-light-blue;
+@base-text: @base-black;
 
-@plus-btn: @base-green;
+@bubble-background: @base-white;
+@bubble-text: @base-text;
+@bubble-borders: @base-black;
 
-@item-background: @base-white;
-@item-text: @base-text;
-@item-borders: @base-light-blue;
-@item-icons: @base-black;
+// IMAGES
+@background-image: url('../images/background.jpg');
+@target-image: url('../images/target.png'), auto;
+@george-image: url('../images/george.png');
+
+// MIXIN
+.ui-bubble {
+    font-weight: 800;
+    padding:5px 10px;
+    border: solid 4px @bubble-borders;
+    background-color: @bubble-background;
+    color: @bubble-text;
+    border-radius: 50px;
+}
 
