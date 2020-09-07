@@ -5,7 +5,7 @@ let timer;
 
 export default class Game {
     constructor(){
-        this.player = [new Player]; // TODO: multiplayer
+        this.player = new Player; // TODO: multiplayer
         this.time = 30;
         this.duration = this.time;
         this.emenyNumer = 3;
@@ -22,23 +22,74 @@ export default class Game {
             this.duration = this.time;
             this.emenyNumer = (enemyNumber ? enemyNumber : this.enemyNumber);
             this.gameElement = gameElement;
-
-            this.initPlayer();
-            this.getEnemies(this.emenyNumer);
-
-            $('<div/>', {
-                "id": 'game-ui',
-                "class": 'game-ui'
-            }).appendTo(gameElement); // add background div
-
+            this.initUi();
             this.initBackground(this.gameElement);
-            this.initTimer();
-            this.initScore();
         }
+    }
+    initUi = () => {
+        $('<div/>', {
+            "id": 'game-ui',
+            "class": 'game-ui'
+        }).appendTo(this.gameElement); // add background div
+
+        $('<span/>', {
+            "id": 'game-timer-title',
+            "class": 'game-timer-title',
+            "text": 'Time:'
+        }).appendTo('#game-ui'); // add timer span
+
+        $('<span/>', {
+            "id": 'game-timer',
+            "class": 'game-timer',
+            "text": this.time
+        }).appendTo('#game-ui'); // add timer span
+
+        $('<span/>', {
+            "id": 'game-player',
+            "class": 'game-player',
+        }).appendTo('#game-ui'); // add timer span
+
+        this.initScore();
+        this.initPlayerRegUi();
+    }
+
+    initPlayerRegUi = () => {
+        $('<div/>', {
+            "id": 'game-login',
+            "class": 'game-login'
+        }).appendTo(this.gameElement); // add login div
+
+        $('<span/>', {
+            "id": 'game-login-title',
+            "class": 'game-login-title',
+            "text": "Name?"
+        }).appendTo('#game-login'); // add login title span
+
+        $('<input/>', {
+            "id": 'game-login-input',
+            "class": 'game-login-input'
+        }).appendTo('#game-login'); // add login input span
+
+        $('<button/>', {
+            "id": 'game-login-button',
+            "class": 'game-login-button',
+            "text": "START!"
+        }).appendTo('#game-login'); // add login button span
+
+        this.initPlayer();
     }
 
     initPlayer = () => {
-
+        let currentThis = this;
+        $('#game-login-button').on("click", function(){
+            if($("#game-login-input").val().length > 0) {
+                currentThis.player.name = $("#game-login-input").val();
+                $('#game-player').text($("#game-login-input").val());
+                $('#game-login').remove();
+                currentThis.initTimer();
+                currentThis.getEnemies(currentThis.emenyNumer);
+            }
+        });
     }
 
     getEnemies = (enemyNumber) => {
@@ -70,18 +121,6 @@ export default class Game {
 
     initTimer = () => {
         this.gameStarted = true;
-        if($('#game-timer').length === 0) {
-            $('<span/>', {
-                "id": 'game-timer-title',
-                "class": 'game-timer-title',
-                "text": 'Time:'
-            }).appendTo('#game-ui'); // add timer span
-            $('<span/>', {
-                "id": 'game-timer',
-                "class": 'game-timer',
-                "text": this.time
-            }).appendTo('#game-ui'); // add timer span
-        }
         let intervalthis = this;
         timer = setInterval(function() {
             intervalthis.time = --intervalthis.time;
@@ -89,6 +128,7 @@ export default class Game {
             if(intervalthis.time == 0) { // Game Over
                 intervalthis.gameStarted = false;
                 intervalthis.gameFinished = true;
+                intervalthis.player.score = intervalthis.score;
                 intervalthis.killAllEnemies();
                 intervalthis.initRestartButton();
                 clearInterval(timer);
