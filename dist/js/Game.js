@@ -5,7 +5,7 @@ let timer;
 
 export default class Game {
     constructor(){
-        this.player = new Player;
+        this.player = [new Player]; // TODO: multiplayer
         this.time = 30;
         this.duration = this.time;
         this.emenyNumer = 3;
@@ -22,6 +22,8 @@ export default class Game {
             this.duration = this.time;
             this.emenyNumer = (enemyNumber ? enemyNumber : this.enemyNumber);
             this.gameElement = gameElement;
+
+            this.initPlayer();
             this.getEnemies(this.emenyNumer);
 
             $('<div/>', {
@@ -33,6 +35,10 @@ export default class Game {
             this.initTimer();
             this.initScore();
         }
+    }
+
+    initPlayer = () => {
+
     }
 
     getEnemies = (enemyNumber) => {
@@ -99,6 +105,7 @@ export default class Game {
         }).appendTo(this.gameElement); // add background div
         $("#game-restart").on("click", function(){
             currentThis.time = currentThis.duration; // reset time
+            $('#game-timer').text(currentThis.time);
             currentThis.score = 0; //reset score
             $('.game-score').text(currentThis.score); //reset score
             $('.game-george').remove(); //remove all enemies
