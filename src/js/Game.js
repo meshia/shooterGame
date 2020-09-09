@@ -17,7 +17,7 @@ export default class Game {
         //this.numberOfPlayers // TODO: multiplayer
     }
 
-    initGame = (time, enemyNumber, gameElement,numberOfPlayers) => {
+    initGame (time, enemyNumber, gameElement,numberOfPlayers) {
         if(gameElement && gameElement.length != 0) {
             this.time = (time ? time : this.time);
             this.duration = this.time;
@@ -27,7 +27,7 @@ export default class Game {
             this.initBackground(this.gameElement);
         }
     }
-    initUi = () => {
+    initUi () {
         $('<div/>', {
             "id": 'game-ui',
             "class": 'game-ui'
@@ -54,7 +54,7 @@ export default class Game {
         this.initPlayerRegUi();
     }
 
-    initPlayerRegUi = () => {
+    initPlayerRegUi () {
         $('<div/>', {
             "id": 'game-login',
             "class": 'game-login'
@@ -80,7 +80,7 @@ export default class Game {
         this.initPlayer();
     }
 
-    initWinnersTable = () => {
+    initWinnersTable () {
         $('<ul/>', {
             "id": 'game-winners',
             "class": 'game-winners'
@@ -104,7 +104,7 @@ export default class Game {
         });
     }
 
-    initPlayer = () => {
+    initPlayer () {
         let currentThis = this;
         $('#game-login-button').on("click", function(){
             if($("#game-login-input").val().length > 0) {
@@ -119,19 +119,19 @@ export default class Game {
         });
     }
 
-    getEnemies = (enemyNumber) => {
+    getEnemies (enemyNumber) {
         for (let i=1 ; i<=enemyNumber ; i++) {
             let george = new George;
             george.initGeorge(this);
         }
     };
 
-    killAllEnemies = () => {
+    killAllEnemies () {
         $('.game-george').stop();
         $('.game-george').off();
     };
 
-    initBackground = (gameElement) => {
+    initBackground (gameElement) {
         let currentThis = this;
         $('<div/>', {
             "id": 'game-background',
@@ -145,7 +145,7 @@ export default class Game {
         });
     };
 
-    initTimer = () => {
+    initTimer () {
         this.gameStarted = true;
         let intervalthis = this;
         timer = setInterval(function() {
@@ -164,7 +164,7 @@ export default class Game {
         }, 1000);
     }
 
-    sendPlayerScore = () => {
+    sendPlayerScore () {
         $.ajax({
             url: this.phpUrl + "sendUserScore.php",
             type:"POST",
@@ -181,7 +181,7 @@ export default class Game {
         });
     }
 
-    initRestartButton = () => {
+    initRestartButton () {
         let currentThis = this;
         $('<span/>', {
             "id": 'game-restart',
@@ -204,7 +204,7 @@ export default class Game {
         });
     }
 
-    initScore = () => {
+    initScore () {
         $('<span/>', {
             "id": 'game-score-title',
             "class": 'game-score-title',

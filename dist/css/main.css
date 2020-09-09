@@ -42,6 +42,7 @@ body #game .game-background {
   background-color: #97B8C4;
   cursor: url('../images/target.png'), auto;
   flex: 0 0 auto;
+  transition: ease 0.2s;
 }
 body #game .game-ui {
   position: absolute;

@@ -13,7 +13,7 @@ export default class George {
         this.parent;
     }
 
-    initGeorge = (parent) => {
+    initGeorge (parent) {
         this.parent = parent;
         this.startYPosition = Math.floor(Math.random() * (this.parent.gameElement.innerHeight()-50));// -50 is the height of the timer
         this.endYPosition = Math.floor(Math.random() * (this.parent.gameElement.innerHeight()-50));// -50 is the height of the timer
@@ -34,7 +34,7 @@ export default class George {
         this.initClickEvent();
     }
 
-    initAnimation = () => {
+    initAnimation () {
         let currentParent = this.parent;
         let currentThis = this;
         this.currentGeorge.delay(this.delayToSpawn).animate({
@@ -48,7 +48,7 @@ export default class George {
           });      
     }
 
-    initClickEvent = () => {
+    initClickEvent () {
         let currentParent = this.parent;
         let currentThis = this;
         this.currentGeorge.on("click", function(e) {
